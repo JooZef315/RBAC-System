@@ -2,7 +2,7 @@
   "name": "knb-task",
   "version": "1.0.0",
   "description": "This is a simple Express application with TypeScript and Prisma.",
-  "main": "server.ts",
+  "main": "index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts"
   },
