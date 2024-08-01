@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Signup() {
   return (
     <main className="h-5/6 flex justify-center items-center">
@@ -27,13 +29,6 @@ export default function Signup() {
             id="Bio"
             placeholder="Bio"
           ></textarea>
-          {/* <input
-            className="w-full py-3 px-5 text-gray-500 border-none"
-            type="text"
-            name="Bio"
-            id="Bio"
-            placeholder="Bio"
-          /> */}
         </div>
         <div className="w-full">
           <input
@@ -63,9 +58,9 @@ export default function Signup() {
         </div>
         <p>
           Already have An Account?{" "}
-          <a href="/login" className="text-blue-900 hover:text-blue-700">
+          <Link to="/login" className="text-blue-900 hover:text-blue-700">
             Log In now!
-          </a>
+          </Link>
         </p>
       </form>
     </main>

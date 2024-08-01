@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import userImg from "../../assets/user.jpg";
 
 export default function Navbar() {
@@ -6,30 +7,30 @@ export default function Navbar() {
       <h3 className="font-bold text-xl text-blue-900">Knb task</h3>
       <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
         <li className="hover:text-gray-800">
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li className="hover:text-gray-800">
-          <a href="/profile">Profile</a>
+          <Link to="/profile">Profile</Link>
         </li>
         <li className="hover:text-gray-800">
-          <a href="/users">Users</a>
+          <Link to="/users">Users</Link>
         </li>
         <li className="hover:text-gray-800">
-          <a href="/dashboard">DashBoard</a>
+          <Link to="/dashboard">DashBoard</Link>
         </li>
       </ul>
-      <div className="flex">
-        {/* <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
+      <div className="hidden sm:flex">
+        <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
           <li className="hover:text-gray-800">
-            <a href="/signup">Sign Up</a>
+            <Link to="/signup">Sign Up</Link>
           </li>
           <li className="hover:text-gray-800">
-            <a href="/login">Log in</a>
+            <Link to="/login">Log in</Link>
           </li>
-        </ul> */}
-        <a href="/profile">
+        </ul>
+        <Link to="/profile">
           <img src={userImg} className="h-8 w-8 rounded-full" />
-        </a>
+        </Link>
       </div>
       <div className="sm:hidden flex flex-col gap-1">
         <div className="h-1 w-5 bg-black rounded-md"></div>

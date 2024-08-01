@@ -1,5 +1,6 @@
 import { TUser } from "../utils/types";
 import userImg from "../../assets/user.jpg";
+import { Link } from "react-router-dom";
 
 export default function UserCard({
   id,
@@ -17,12 +18,12 @@ export default function UserCard({
       <div className="flex-grow flex flex-col gap-2 text-gray-500">
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-xl pl-2">{name}</h2>
-          <a
-            href="/profile"
+          <Link
+            to="/profile"
             className="bg-white hover:bg-gray-300 rounded-xl py-2 px-6 text-gray-500 "
           >
             Visit Profile
-          </a>
+          </Link>
         </div>
         <p>
           <span className="font-semibold">Id</span> : {id}

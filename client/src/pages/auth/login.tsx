@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Login() {
   return (
     <main className="h-4/5 flex justify-center items-center">
@@ -30,10 +32,9 @@ export default function Login() {
         </div>
         <p>
           Not registered?{" "}
-          <a href="/signup" className="text-blue-900 hover:text-blue-700">
-            {" "}
-            Create An Account{" "}
-          </a>
+          <Link to="/signup" className="text-blue-900 hover:text-blue-700">
+            Create An Account
+          </Link>
         </p>
       </form>
     </main>
