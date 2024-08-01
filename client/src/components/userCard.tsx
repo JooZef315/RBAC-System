@@ -1,6 +1,5 @@
 import { TUser } from "../utils/types";
 import userImg from "../../assets/user.jpg";
-import { Link } from "react-router-dom";
 
 export default function UserCard({
   id,
@@ -8,7 +7,7 @@ export default function UserCard({
   email,
   role,
   bio,
-  joinedAt,
+  createdAt,
 }: TUser) {
   return (
     <div className="bg-gray-100 p-8 flex items-center gap-4 shadow-sm rounded-md">
@@ -16,15 +15,7 @@ export default function UserCard({
         <img src={userImg} alt="userImg" className="w-24 h-24 rounded-full" />
       </div>
       <div className="flex-grow flex flex-col gap-2 text-gray-500">
-        <div className="flex items-center justify-between">
-          <h2 className="font-bold text-xl pl-2">{name}</h2>
-          <Link
-            to="/profile"
-            className="bg-white hover:bg-gray-300 rounded-xl py-2 px-6 text-gray-500 "
-          >
-            Visit Profile
-          </Link>
-        </div>
+        <h2 className="font-bold text-xl pl-2">{name}</h2>
         <p>
           <span className="font-semibold">Id</span> : {id}
         </p>
@@ -35,11 +26,11 @@ export default function UserCard({
           <span className="font-semibold">Role</span> : {role}
         </p>
         <p>
-          <span className="font-semibold">Bio</span> : {bio ? bio : "No Bio"}
+          <span className="font-semibold">Bio</span> : {bio || "No Bio"}
         </p>
         <p>
-          <span className="font-semibold">joined At</span> :{" "}
-          {joinedAt.toString()}
+          <span className="font-semibold">joined At</span> :
+          {createdAt.toString()}
         </p>
       </div>
     </div>

@@ -4,7 +4,7 @@ export type TUser = {
   email: string;
   role: Role;
   bio?: string;
-  joinedAt: Date;
+  createdAt: Date;
 };
 
 export enum Role {

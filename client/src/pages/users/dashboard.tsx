@@ -1,6 +1,30 @@
+import { useEffect, useState } from "react";
 import DropDownButton from "../../components/dropDownButton";
+import { useAuthStore } from "../../store/authStore";
+import { TUser } from "../../utils/types";
 
 export default function Dashboard() {
+  const jwtToken = useAuthStore((state) => state.jwtToken);
+  const [users, setUsers] = useState<TUser[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      console.log(jwtToken);
+      const response = await fetch("http://localhost:3001/api/v1/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      });
+      const result = (await response.json()) as TUser[];
+      console.log(result);
+      setUsers(result);
+    };
+
+    fetchUsers();
+  }, [jwtToken]);
+
   return (
     <main className="flex flex-col gap-3 p-6 max-w-6xl mx-auto">
       <h2 className="text-gray-600 font-bold text-2xl">
@@ -15,27 +39,17 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          <tr className="fade-in text-gray-800 bg-gray-200 border-b-white border-b-8">
-            <td className="p-3 text-center">123456789</td>
-            <td className="p-3 text-center">Joo</td>
-            <td className="p-3 text-center">
-              <DropDownButton defaultRole={"User"} />
-            </td>
-          </tr>
-          <tr className="fade-in text-blue-950 bg-slate-200 border-b-white border-b-8">
-            <td className="p-3 text-center">123456789</td>
-            <td className="p-3 text-center">Joo</td>
-            <td className="p-3 text-center">
-              <DropDownButton defaultRole={"User"} />
-            </td>
-          </tr>
-          <tr className="fade-in text-blue-950 bg-slate-200 border-b-white border-b-8">
-            <td className="p-3 text-center">123456789</td>
-            <td className="p-3 text-center">Joo</td>
-            <td className="p-3 text-center">
-              <DropDownButton defaultRole={"User"} />
-            </td>
-          </tr>
+          {users.map((user) => {
+            return (
+              <tr className="fade-in text-gray-800 bg-gray-200 border-b-white border-b-8">
+                <td className="p-3 text-center">{user.id}</td>
+                <td className="p-3 text-center">{user.name}</td>
+                <td className="p-3 text-center">
+                  <DropDownButton defaultRole={user.role} />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <button className="bg-gray-600 hover:bg-gray-800 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
