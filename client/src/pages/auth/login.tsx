@@ -1,9 +1,52 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    if (!email || !password) {
+      setError("Email / Password can't be empty!");
+      return;
+    }
+    const body = { email, password };
+
+    const response = await fetch("http://localhost:3001/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const result = await response.json();
+
+    if (result.statusCode == 401) {
+      setError(result.message);
+      return;
+    }
+
+    login(result.accessToken);
+    navigate("/");
+  };
+
   return (
     <main className="h-4/5 flex justify-center items-center">
-      <form className="min-w-96 bg-gray-100 flex flex-col justify-center items-center gap-5 py-12 px-10 shadow-xl">
+      <form
+        onSubmit={handleSubmit}
+        className="min-w-96 bg-gray-100 flex flex-col justify-center items-center gap-5 py-12 px-10 shadow-xl"
+      >
+        {error && (
+          <p className="w-full bg-red-300 p-2 text-center text-xs my-1">
+            {error}
+          </p>
+        )}
         <div className="w-full">
           <input
             className="w-full py-3 px-5 text-gray-500 border-none"
@@ -11,6 +54,8 @@ export default function Login() {
             name="email"
             id="email"
             placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="w-full">
@@ -20,6 +65,8 @@ export default function Login() {
             name="password"
             id="password"
             placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="w-full">

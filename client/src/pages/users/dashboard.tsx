@@ -38,7 +38,7 @@ export default function Dashboard() {
           </tr>
         </tbody>
       </table>
-      <button className="bg-blue-900 hover:bg-blue-700 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
+      <button className="bg-gray-600 hover:bg-gray-800 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
         Save
       </button>
     </main>

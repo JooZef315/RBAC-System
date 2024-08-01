@@ -1,10 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userImg from "../../assets/user.jpg";
+import { useState } from "react";
+import { useAuthStore } from "../store/authStore";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
-    <nav className="bg-white flex justify-around items-center py-4 mx-auto shadow-sm sticky top-0 z-50">
-      <h3 className="font-bold text-xl text-blue-900">Knb task</h3>
+    <nav className="bg-white flex justify-around items-center h-14 py-4 mx-auto shadow-sm sticky top-0 z-50">
+      <h3 className="font-bold text-xl text-gray-800">Knb task</h3>
       <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
         <li className="hover:text-gray-800">
           <Link to="/">Home</Link>
@@ -20,31 +32,85 @@ export default function Navbar() {
         </li>
       </ul>
       <div className="hidden sm:flex gap-2">
-        <ul className="flex justify-center items-center gap-3 text-gray-500 text-sm">
-          <li className="hover:text-gray-800">
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li className="hover:text-gray-800">
-            <Link to="/login">Log in</Link>
-          </li>
-        </ul>
-        <div className="hidden sm:flex gap-3">
-          <Link to="/profile">
-            <img src={userImg} className="h-8 w-8 rounded-full" />
-          </Link>
-          <button
-            type="button"
-            className="text-gray-500 text-sm hover:text-gray-800"
-          >
-            Log out
-          </button>
+        {!isLoggedIn ? (
+          <ul className="flex justify-center items-center gap-3 text-gray-500 text-sm">
+            <li className="hover:text-gray-800">
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            <li className="hover:text-gray-800">
+              <Link to="/login">Log in</Link>
+            </li>
+          </ul>
+        ) : (
+          <div className="hidden sm:flex gap-3">
+            <Link to="/profile">
+              <img src={userImg} className="h-8 w-8 rounded-full" />
+            </Link>
+            <button
+              type="button"
+              className="text-gray-500 text-sm hover:text-gray-800"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </div>
+        )}
+      </div>
+      <div
+        className="sm:hidden flex flex-col gap-1 hover:cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="h-1 w-5 bg-black rounded-md"></div>
+        <div className="h-1 w-5 bg-black rounded-md"></div>
+        <div className="h-1 w-5 bg-black rounded-md"></div>
+      </div>
+
+      {/* modal */}
+      {isOpen && (
+        <div className="absolute text-gray-500 top-14 left-0 w-full h-screen z-50 bg-gray-50 flex flex-col gap-1 justify-center items-center">
+          <ul>
+            {isLoggedIn ? (
+              <>
+                <li className="hover:text-gray-800">
+                  <Link to="/profile">
+                    <img src={userImg} className="h-8 w-8 rounded-full" />
+                  </Link>
+                </li>
+                <li className="hover:text-gray-800">
+                  <button
+                    type="button"
+                    className="text-gray-500 text-sm hover:text-gray-800"
+                    onClick={handleLogout}
+                  >
+                    Log out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="hover:text-gray-800">
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+                <li className="hover:text-gray-800">
+                  <Link to="/login">Log in</Link>
+                </li>
+              </>
+            )}
+            <li className="hover:text-gray-800 mt-3">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="hover:text-gray-800">
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li className="hover:text-gray-800">
+              <Link to="/users">Users</Link>
+            </li>
+            <li className="hover:text-gray-800">
+              <Link to="/dashboard">DashBoard</Link>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div className="sm:hidden flex flex-col gap-1">
-        <div className="h-1 w-5 bg-black rounded-md"></div>
-        <div className="h-1 w-5 bg-black rounded-md"></div>
-        <div className="h-1 w-5 bg-black rounded-md"></div>
-      </div>
+      )}
     </nav>
   );
 }

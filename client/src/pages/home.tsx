@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
 import hero from "../../assets/hero.png";
+import { useAuthStore } from "../store/authStore";
 
 export default function Home() {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   return (
     <header className="flex h-full max-w-6xl mx-auto mt-6  flex-col-reverse sm:flex-row gap-6 px-8 py-12">
       <div className="flex-1 flex flex-col gap-2 p-4">
@@ -10,18 +14,24 @@ export default function Home() {
           frontend and Express for the backend.
         </p>
         <div className="flex flex-col gap-3">
-          {/* <button className="bg-blue-900 hover:bg-blue-700 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
-            Log in
-          </button> */}
-          <p className="text-gray-500">
-            Hi, Joo. You can visit your &nbsp;
-            <a
-              className="text-xl hover:text-gray-700 hover:underline"
-              href={"/profile"}
+          {isLoggedIn ? (
+            <p className="text-gray-500">
+              Hi There! You can visit your &nbsp;
+              <Link
+                className="text-xl hover:text-gray-700 hover:underline"
+                to={"/profile"}
+              >
+                Profile!
+              </Link>
+            </p>
+          ) : (
+            <Link
+              to={"/login"}
+              className="bg-gray-600 hover:bg-gray-800 rounded-3xl py-2 px-10 text-white ml-3 mr-auto"
             >
-              Profile!
-            </a>
-          </p>
+              Log in
+            </Link>
+          )}
         </div>
       </div>
       <div className="flex-1">
