@@ -9,7 +9,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      console.log(jwtToken);
       const response = await fetch("http://localhost:3001/api/v1/users", {
         method: "GET",
         headers: {

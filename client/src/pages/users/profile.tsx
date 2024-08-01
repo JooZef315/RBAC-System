@@ -10,8 +10,6 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log(jwtToken);
-      console.log(payload);
       const response = await fetch(
         `http://localhost:3001/api/v1/users/${payload?.id}`,
         {
