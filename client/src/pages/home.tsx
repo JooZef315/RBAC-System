@@ -10,9 +10,9 @@ export default function Home() {
           frontend and Express for the backend.
         </p>
         <div className="flex flex-col gap-3">
-          <button className="bg-gray-500 hover:bg-gray-600 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
+          {/* <button className="bg-blue-900 hover:bg-blue-700 rounded-3xl py-2 px-10 text-white ml-3 mr-auto">
             Log in
-          </button>
+          </button> */}
           <p className="text-gray-500">
             Hi, Joo. You can visit your &nbsp;
             <a

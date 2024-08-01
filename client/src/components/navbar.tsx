@@ -3,7 +3,7 @@ import userImg from "../../assets/user.jpg";
 export default function Navbar() {
   return (
     <nav className="bg-white flex justify-around items-center py-4 mx-auto shadow-sm sticky top-0 z-50">
-      <h3 className="font-bold text-xl text-gray-900">Knb task</h3>
+      <h3 className="font-bold text-xl text-blue-900">Knb task</h3>
       <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
         <li className="hover:text-gray-800">
           <a href="/">Home</a>

@@ -1,15 +1,10 @@
 import { useState } from "react";
 import downArrow from "../../assets/down-arrow.png";
+import { Role } from "../utils/types";
 
 type PropsType = {
   defaultRole: string;
 };
-
-enum Role {
-  USER = "USER",
-  SUPER_USER = "SUPER_USER",
-  ADMIN = "ADMIN",
-}
 
 const roles: Role[] = [Role.ADMIN, Role.SUPER_USER, Role.USER];
 
@@ -39,12 +34,12 @@ export default function DropDownButton({ defaultRole }: PropsType) {
       </div>
 
       {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="z-20 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1">
             {roles.map((role) => (
               <button
                 key={role}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left"
                 onClick={() => handleSelect(role)}
               >
                 {role}
