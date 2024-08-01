@@ -12,3 +12,11 @@ export enum Role {
   SUPER_USER = "SUPER_USER",
   ADMIN = "ADMIN",
 }
+
+export type Payload = {
+  id: string;
+  email: string;
+  role: Role;
+  exp: number;
+  iat: number;
+};
