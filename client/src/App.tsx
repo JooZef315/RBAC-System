@@ -1,5 +1,13 @@
+import Navbar from "./components/navbar";
+import Home from "./pages/home";
+
 function App() {
-  return <>hi</>;
+  return (
+    <main className="h-screen">
+      <Navbar />
+      <Home />
+    </main>
+  );
 }
 
 export default App;

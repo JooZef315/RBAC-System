@@ -1,3 +1,3 @@
-export default function dashboardItem() {
+export default function DashboardItem() {
   return <div>dashboardItem</div>;
 }
