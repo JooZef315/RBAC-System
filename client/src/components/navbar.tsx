@@ -19,8 +19,8 @@ export default function Navbar() {
           <Link to="/dashboard">DashBoard</Link>
         </li>
       </ul>
-      <div className="hidden sm:flex">
-        <ul className="hidden sm:flex justify-center items-center gap-3 text-gray-500 text-sm">
+      <div className="hidden sm:flex gap-2">
+        <ul className="flex justify-center items-center gap-3 text-gray-500 text-sm">
           <li className="hover:text-gray-800">
             <Link to="/signup">Sign Up</Link>
           </li>
@@ -28,9 +28,17 @@ export default function Navbar() {
             <Link to="/login">Log in</Link>
           </li>
         </ul>
-        <Link to="/profile">
-          <img src={userImg} className="h-8 w-8 rounded-full" />
-        </Link>
+        <div className="hidden sm:flex gap-3">
+          <Link to="/profile">
+            <img src={userImg} className="h-8 w-8 rounded-full" />
+          </Link>
+          <button
+            type="button"
+            className="text-gray-500 text-sm hover:text-gray-800"
+          >
+            Log out
+          </button>
+        </div>
       </div>
       <div className="sm:hidden flex flex-col gap-1">
         <div className="h-1 w-5 bg-black rounded-md"></div>
