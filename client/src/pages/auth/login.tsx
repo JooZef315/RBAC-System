@@ -27,7 +27,7 @@ export default function Login() {
     });
     const result = await response.json();
 
-    if (result.statusCode == 401) {
+    if (response.status != 200) {
       setError(result.message);
       return;
     }
@@ -43,7 +43,7 @@ export default function Login() {
         className="min-w-96 bg-gray-100 flex flex-col justify-center items-center gap-5 py-12 px-10 shadow-xl"
       >
         {error && (
-          <p className="w-full bg-red-300 p-2 text-center text-xs my-1">
+          <p className="w-full bg-red-800 text-white p-2 text-center text-xs my-1">
             {error}
           </p>
         )}
