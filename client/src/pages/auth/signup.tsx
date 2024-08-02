@@ -50,12 +50,12 @@ export default function Signup() {
     const result = await response.json();
 
     if (response.status != 200) {
-      setError(result.message);
       setLoading(false);
+      setError(result.message);
       return;
     } else {
-      setSuccess(result.message);
       setLoading(false);
+      setSuccess(result.message);
       return;
     }
   };

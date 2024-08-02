@@ -2,6 +2,7 @@ import { TUser } from "../utils/types";
 import userImg from "../../assets/user.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
+import { toast } from "react-toastify";
 
 export default function UserCard({
   id,
@@ -29,7 +30,7 @@ export default function UserCard({
     );
     const result = await response.json();
     logout();
-    alert(result.message);
+    toast.error(result.message);
     navigate("/");
   };
   return (

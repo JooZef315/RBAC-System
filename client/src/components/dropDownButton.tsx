@@ -3,20 +3,36 @@ import downArrow from "../../assets/down-arrow.png";
 import { Role } from "../utils/types";
 
 type PropsType = {
-  defaultRole: string;
+  defaultRole: Role;
+  id: string;
+  editRole: React.Dispatch<React.SetStateAction<Map<string, Role>>>;
 };
 
 const roles: Role[] = [Role.ADMIN, Role.SUPER_USER, Role.USER];
 
-export default function DropDownButton({ defaultRole }: PropsType) {
+export default function DropDownButton({
+  defaultRole,
+  id,
+  editRole,
+}: PropsType) {
   const [isOpen, setIsOpen] = useState(false);
+  const [newRole, setNewRole] = useState<Role>(defaultRole);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelect = (role: string) => {
-    console.log(role);
+  const handleSelect = (role: Role) => {
+    editRole((state) => {
+      setNewRole(role);
+      if (role == defaultRole) {
+        state.delete(id);
+        return state;
+      } else {
+        state.set(id, role);
+        return state;
+      }
+    });
     setIsOpen(false);
   };
 
@@ -28,7 +44,7 @@ export default function DropDownButton({ defaultRole }: PropsType) {
           className="inline-flex justify-center items-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
           onClick={handleToggle}
         >
-          {defaultRole || "Select Role"}
+          {newRole}
           <img src={downArrow} alt="downArrow" className="h-3 ml-1 mt-1" />
         </button>
       </div>
