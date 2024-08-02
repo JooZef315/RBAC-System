@@ -6,7 +6,6 @@ import { CustomError } from "../../utils/customErrors";
 // @access  Private
 export const logoutController = (req: Request, res: Response) => {
   const jwtCookie: string | null = req.cookies.jwt || null;
-
   if (!jwtCookie) {
     throw new CustomError("No Cookie", 204);
   }
@@ -14,7 +13,7 @@ export const logoutController = (req: Request, res: Response) => {
   res.clearCookie("jwt", {
     httpOnly: true,
     secure: false,
-    sameSite: "none",
+    sameSite: "lax",
   });
 
   res.status(200).json({ message: "Cookies cleared!!" });

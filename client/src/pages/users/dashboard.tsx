@@ -23,7 +23,6 @@ export default function Dashboard() {
         },
       });
       const result = (await response.json()) as TUser[];
-      console.log(result);
       setUsers(result);
       setLoading(false);
     };

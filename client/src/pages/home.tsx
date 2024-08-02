@@ -6,7 +6,7 @@ export default function Home() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   return (
-    <header className="flex h-full max-w-6xl mx-auto mt-6  flex-col-reverse sm:flex-row gap-6 px-8 py-12">
+    <header className="flex sm:h-3/4 h-full max-w-6xl mx-auto mt-6  flex-col-reverse sm:flex-row gap-6 px-8 py-12">
       <div className="flex-1 flex flex-col gap-2 p-4">
         <h1 className="text-black font-bold text-6xl pb-5">Technical Task</h1>
         <p className="text-gray-500">

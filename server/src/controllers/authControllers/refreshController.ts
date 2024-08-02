@@ -6,7 +6,6 @@ import { refreshAccessToken } from "../../services/auth/refreshAccessToken";
 // @access  Private
 export const refreshController = async (req: Request, res: Response) => {
   const refreshToken: string = req.cookies?.jwt || "";
-
   const accessToken = await refreshAccessToken(refreshToken);
 
   res.status(200).json({ accessToken });

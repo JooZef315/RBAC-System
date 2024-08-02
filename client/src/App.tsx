@@ -10,6 +10,7 @@ import Dashboard from "./pages/users/dashboard";
 import EditUser from "./pages/users/editUser";
 import ProtectedRoute from "./components/protectedRoute";
 import { Permission } from "./utils/types";
+import { useRefreshToken } from "./hooks/useRefreshToken";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  useRefreshToken();
   return <RouterProvider router={router} />;
 }
 

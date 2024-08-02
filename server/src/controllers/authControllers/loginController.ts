@@ -19,7 +19,7 @@ export const loginController = async (req: Request, res: Response) => {
   res.cookie("jwt", refreshToken, {
     httpOnly: true, //accessible only by web server
     secure: false, //https
-    sameSite: "none", //cross-site cookie
+    sameSite: "lax", //cross-site cookie
     maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry
   });
 

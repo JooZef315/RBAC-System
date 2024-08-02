@@ -38,7 +38,7 @@ export const refreshAccessToken = async (refreshToken: string) => {
       }
     );
 
-    return { accessToken };
+    return accessToken;
   } catch (error: any) {
     console.log(error.message);
     throw new CustomError(error.message, 401);

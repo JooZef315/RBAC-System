@@ -7,11 +7,27 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
+  const jwtToken = useAuthStore((state) => state.jwtToken);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
+  const handleLogout = async () => {
+    const response = await fetch("http://localhost:3001/api/v1/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      credentials: "include",
+    });
+
+    if (response.status == 200) {
+      const result = await response.json();
+      console.log(result);
+      logout();
+      navigate("/");
+    } else {
+      console.log(response);
+    }
   };
 
   return (

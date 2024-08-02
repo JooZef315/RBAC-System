@@ -29,8 +29,10 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(body),
     });
+
     const result = await response.json();
 
     if (response.status != 200) {
