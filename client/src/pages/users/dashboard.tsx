@@ -40,7 +40,6 @@ export default function Dashboard() {
         const responsePromises: Promise<Response>[] = [];
 
         usersToEdit.forEach(async (role, id) => {
-          console.log(id, role);
           const response = fetch(
             `http://localhost:3001/api/v1/users/${id}/roles`,
             {
@@ -49,7 +48,7 @@ export default function Dashboard() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${jwtToken}`,
               },
-              body: JSON.stringify({ role: "ss" }),
+              body: JSON.stringify({ role }),
             }
           );
           responsePromises.push(response);

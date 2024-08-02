@@ -8,6 +8,8 @@ import Profile from "./pages/users/profile";
 import UsersList from "./pages/users/userList";
 import Dashboard from "./pages/users/dashboard";
 import EditUser from "./pages/users/editUser";
+import ProtectedRoute from "./components/protectedRoute";
+import { Permission } from "./utils/types";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Home />,
       },
       {
@@ -28,20 +30,38 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/editProfile",
-        element: <EditUser />,
+        path: "/",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+          {
+            path: "/editProfile",
+            element: <EditUser />,
+          },
+        ],
       },
       {
         path: "/users",
-        element: <UsersList />,
+        element: <ProtectedRoute permission={Permission.SUPER} />,
+        children: [
+          {
+            path: "",
+            element: <UsersList />,
+          },
+        ],
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRoute permission={Permission.ADMIN} />,
+        children: [
+          {
+            path: "",
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },

@@ -13,6 +13,11 @@ export enum Role {
   ADMIN = "ADMIN",
 }
 
+export enum Permission {
+  SUPER = "SUPER",
+  ADMIN = "ADMIN",
+}
+
 export type Payload = {
   id: string;
   email: string;

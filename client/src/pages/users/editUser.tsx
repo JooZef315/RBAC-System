@@ -50,9 +50,18 @@ export default function EditUser() {
       bio: bio || undefined,
       password: password || undefined,
     };
-    console.log(formData);
+
+    if (
+      !formData.name &&
+      !formData.email &&
+      !formData.bio &&
+      !formData.password
+    ) {
+      setLoading(false);
+      return;
+    }
+
     const parsedData = editUserSchema.safeParse(formData);
-    console.log(parsedData);
 
     if (!parsedData.success) {
       const fieldErrors: Partial<Record<keyof TEditUser, string>> = {};
