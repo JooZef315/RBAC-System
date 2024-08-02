@@ -7,6 +7,7 @@ import Signup from "./pages/auth/signup";
 import Profile from "./pages/users/profile";
 import UsersList from "./pages/users/userList";
 import Dashboard from "./pages/users/dashboard";
+import EditUser from "./pages/users/editUser";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/editProfile",
+        element: <EditUser />,
       },
       {
         path: "/users",

@@ -19,20 +19,7 @@ export const signUpSchema = z
 
 const signUpZodSchema = signUpSchema._def.schema;
 
-const editUserZodSchema = signUpZodSchema.partial();
-
-export const editUserSchema = editUserZodSchema.refine(
-  (data) => {
-    if (data.confirmPassword || data.password) {
-      return data.confirmPassword === data.password;
-    }
-    return true;
-  },
-  {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  }
-);
+export const editUserSchema = signUpZodSchema.partial();
 
 export type TSignUp = z.infer<typeof signUpSchema>;
 export type TEditUser = z.infer<typeof editUserSchema>;
