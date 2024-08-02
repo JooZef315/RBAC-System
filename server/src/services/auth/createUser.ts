@@ -22,7 +22,7 @@ export const createUser = async (userData: TCreateUser) => {
       email: userData.email,
       password: hashedPassword,
       role: Role.USER,
-      bio: userData.bio,
+      bio: !userData.bio?.length ? null : userData.bio,
     },
     select: {
       name: true,

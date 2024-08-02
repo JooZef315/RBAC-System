@@ -8,7 +8,6 @@ import { createUser } from "../../services/auth/createUser";
 // @access  Public
 export const signupController = async (req: Request, res: Response) => {
   const { userData, error } = validateCreateUserDto(req.body);
-
   if (error) {
     throw new CustomError(error.message, 400);
   }
