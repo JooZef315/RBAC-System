@@ -47,7 +47,7 @@ This project implements a Role-Based Access Control (RBAC) system with JWT authe
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/JooZef315/KNB-task.git
-   cd KNB-task/sserver
+   cd KNB-task/server
    ```
 2. **Install dependencies:**
    ```bash
